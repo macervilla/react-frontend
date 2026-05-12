@@ -3,16 +3,11 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import RutaProtegida from './componentes/RutaProtegida';
 import { ContextoAutenticacion } from './contextos/ContextoAutenticacion';
+import { ContextoTema } from './contextos/ContextoTema';
 
 import PaginaLogin from './paginas/PaginaLogin';
 import PaginaRoles from './paginas/PaginaRoles';
 import PaginaClientes from './paginas/PaginaClientes';
-
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
-
-import { ContextoTema }
-from './contextos/ContextoTema';
 
 import {
   AppBar,
@@ -32,13 +27,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LoginIcon from '@mui/icons-material/Login';
 import PeopleIcon from '@mui/icons-material/People';
 import SecurityIcon from '@mui/icons-material/Security';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 
 function App() {
-  const {
-  modoOscuro,
-  cambiarModo
-} = useContext(ContextoTema);
   const { usuario } = useContext(ContextoAutenticacion);
+
+  const {
+    modoOscuro,
+    cambiarModo
+  } = useContext(ContextoTema);
 
   const [menuAbierto, setMenuAbierto] = useState(true);
 
@@ -65,18 +63,19 @@ function App() {
             <Box sx={{ ml: 4 }}>
               Usuario: {usuario || 'No autenticado'}
             </Box>
+
+            <Box sx={{ flexGrow: 1 }} />
+
+            <IconButton
+              color="inherit"
+              onClick={cambiarModo}
+            >
+              {modoOscuro
+                ? <LightModeIcon />
+                : <DarkModeIcon />
+              }
+            </IconButton>
           </Toolbar>
-          <IconButton
-  color="inherit"
-  onClick={cambiarModo}
->
-
-  {modoOscuro
-    ? <LightModeIcon />
-    : <DarkModeIcon />
-  }
-
-</IconButton>
         </AppBar>
 
         <Drawer
