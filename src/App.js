@@ -8,7 +8,8 @@ import { ContextoTema } from './contextos/ContextoTema';
 import PaginaLogin from './paginas/PaginaLogin';
 import PaginaRoles from './paginas/PaginaRoles';
 import PaginaClientes from './paginas/PaginaClientes';
-
+import PaginaDashboard from './paginas/PaginaDashboard';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import {
   AppBar,
   Toolbar,
@@ -107,32 +108,44 @@ function App() {
               </ListItem>
 
               {usuario && (
-                <>
-                  <ListItem disablePadding>
-                    <ListItemButton component={Link} to="/roles">
-                      <ListItemIcon>
-                        <SecurityIcon />
-                      </ListItemIcon>
+  <>
+    <ListItem disablePadding>
+      <ListItemButton component={Link} to="/dashboard">
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
 
-                      {menuAbierto && (
-                        <ListItemText primary="Roles" />
-                      )}
-                    </ListItemButton>
-                  </ListItem>
+        {menuAbierto && (
+          <ListItemText primary="Dashboard" />
+        )}
+      </ListItemButton>
+    </ListItem>
 
-                  <ListItem disablePadding>
-                    <ListItemButton component={Link} to="/clientes">
-                      <ListItemIcon>
-                        <PeopleIcon />
-                      </ListItemIcon>
+    <ListItem disablePadding>
+      <ListItemButton component={Link} to="/roles">
+        <ListItemIcon>
+          <SecurityIcon />
+        </ListItemIcon>
 
-                      {menuAbierto && (
-                        <ListItemText primary="Clientes" />
-                      )}
-                    </ListItemButton>
-                  </ListItem>
-                </>
-              )}
+        {menuAbierto && (
+          <ListItemText primary="Roles" />
+        )}
+      </ListItemButton>
+    </ListItem>
+
+    <ListItem disablePadding>
+      <ListItemButton component={Link} to="/clientes">
+        <ListItemIcon>
+          <PeopleIcon />
+        </ListItemIcon>
+
+        {menuAbierto && (
+          <ListItemText primary="Clientes" />
+        )}
+      </ListItemButton>
+    </ListItem>
+  </>
+)}
             </List>
           </Box>
         </Drawer>
@@ -166,6 +179,14 @@ function App() {
                 </RutaProtegida>
               }
             />
+            <Route
+  path="/dashboard"
+  element={
+    <RutaProtegida>
+      <PaginaDashboard />
+    </RutaProtegida>
+  }
+/>
           </Routes>
         </Box>
       </Box>
